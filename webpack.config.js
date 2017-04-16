@@ -1,5 +1,20 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const isProd = process.env.NODE_ENV === 'production'; //true or false
+
+const cssDev = [
+  'css-loader',
+  'sass-loader'
+];
+const cssProd = ExtractTextPlugin.extract({
+  fallback: 'style-loader',
+  use: ['css-loader','sass-loader'],
+  publicPath: '/dist'
+});
+const cssConfig = isProd ? cssProd : cssDev;
+
 
 module.exports = {
   entry: {
@@ -23,13 +38,26 @@ module.exports = {
       {
         test: /\.(pug|jade)$/,
         loader: 'pug-loader'
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: cssConfig
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'My App using pug',
-      template: 'public/index.pug'
+      template: 'public/index.pug',
+      hash: true,
+      minify: {
+        collapseWhitespace: true
+      }
+    }),
+    new ExtractTextPlugin({
+      filename: 'css/[name].css',
+      disable: !isProd,
+      allChunks: true
     })
   ],
   output: {

@@ -1,0 +1,27 @@
+@import './color-variable';
+
+@mixin inline-block {
+  display: inline-block;
+}
+
+@mixin button {
+  cursor: pointer;
+}
+
+.display {
+  @include inline-block;
+}
+
+.button {
+  @include inline-block;
+  @include button;
+  padding: 0.3em 0.6em;
+  @at-root &_blue {
+    color: $blue;
+    border: 1px solid $blue;
+    &:hover {
+      color: white;
+      background-color: $blue;
+    }
+  }
+}

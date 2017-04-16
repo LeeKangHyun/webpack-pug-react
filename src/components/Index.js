@@ -1,9 +1,11 @@
 import React from 'react';
 
+require('../stylesheets/common.scss');
+
 const Index = () => {
   return (
     <div>
-      {console.log('들어가집니다.')}
+      <div className="button button_blue">button</div>
     </div>
   );
 };
