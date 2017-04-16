@@ -7,11 +7,20 @@ const app = express();
 const isProd = process.env.NODE_ENV === 'production';
 const port = isProd ? process.env.NODE_PORT:3000;
 
+const webpack = require('webpack');
+const webpackDevServer = require('webpack-dev-server');
+
+
 const publicPath = path.join(__dirname, '..', 'public');
 const buildPath = path.join(__dirname, '..', 'dist');
 
 app.set('view engine', 'pug');
 app.set('views', publicPath);
+
+if ('development' === process.env.NODE_ENV) {
+
+}
+
 app.use(express.static(buildPath));
 
 app.get('*', function (req, res) {

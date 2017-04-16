@@ -4,9 +4,9 @@
   "description": "webpack2_example",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --color -p --config webpack.config.js",
-    "build-win": "set NODE_ENV=production&&webpack --color -p --config webpack.config.js",
-    "dev": "webpack --watch",
+    "build": "webpack -p --config webpack.config.js",
+    "build-win": "webpack -p --config webpack.config.js",
+    "dev": "webpack-dev-server",
     "start": "NODE_ENV=production node server/server.js",
     "start-win": "set NODE_ENV=production&&set NODE_PORT=3030&&node server/server.js"
   },
