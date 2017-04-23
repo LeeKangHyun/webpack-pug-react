@@ -18,8 +18,8 @@ const cssConfig = isProd ? cssProd : cssDev;
 
 module.exports = {
   entry: {
-    vendor: ['react', 'react-dom'],
-    app: path.resolve(__dirname, 'src/App.js'),
+    vendor: ['babel-polyfill', 'react', 'react-dom'],
+    app: [path.resolve(__dirname, 'src/App.js')],
   },
   module: {
     rules: [
